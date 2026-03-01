@@ -1,7 +1,7 @@
 import { useRef, useLayoutEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Mail, Phone, Clock, Send, ArrowRight, MapPin } from 'lucide-react';
+import { Mail, Phone, Clock, Send, ArrowRight, MapPin, Star, Users, Zap } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 
@@ -48,6 +48,7 @@ const Contact = () => {
   return (
     <div ref={pageRef} className="bg-ron-dark pt-24 pb-16 lg:pt-32 lg:pb-24">
       <div className="w-full px-5 lg:px-[5vw]">
+
         {/* Page Header */}
         <div className="page-header mb-12 lg:mb-16">
           <p className="micro-label mb-4">Get in Touch</p>
@@ -61,7 +62,8 @@ const Contact = () => {
 
         {/* Contact Grid */}
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
-          {/* Form */}
+
+          {/* Left: Form */}
           <div className="contact-form process-card p-5 lg:p-6">
             {isSubmitted ? (
               <div className="text-center py-12">
@@ -120,6 +122,15 @@ const Contact = () => {
                       className="bg-white/5 border-white/10 text-white placeholder:text-white/40 focus:border-ron-yellow resize-none"
                     />
                   </div>
+
+                  {/* Fast Response Guarantee — moved above submit button to reduce friction */}
+                  <div className="flex items-start gap-3 p-3 rounded-xl bg-ron-yellow/5 border border-ron-yellow/15">
+                    <Zap size={15} className="text-ron-yellow flex-shrink-0 mt-0.5" />
+                    <p className="text-ron-text-secondary text-xs leading-relaxed">
+                      <span className="text-white font-medium">Fast Response Guarantee</span> — We respond to all inquiries within 24 hours. For urgent matters, call us directly.
+                    </p>
+                  </div>
+
                   <button type="submit" className="w-full btn-primary flex items-center justify-center gap-2 mt-2">
                     Send message
                     <ArrowRight size={16} />
@@ -129,60 +140,94 @@ const Contact = () => {
             )}
           </div>
 
-          {/* Contact Info */}
-          <div className="contact-info">
-            <div className="mb-8">
-              <h3 className="font-display font-semibold text-lg text-white mb-5">Contact Information</h3>
-              <div className="space-y-4">
-                <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center">
-                    <Mail size={18} className="text-ron-yellow" />
+          {/* Right: Info panel — with stats bar + compact contact details */}
+          <div className="contact-info flex flex-col gap-6">
+
+            {/* Social proof stats bar */}
+            <div className="process-card p-5 lg:p-6">
+              <p className="font-mono text-xs uppercase tracking-[0.12em] text-ron-text-secondary mb-4">
+                Why work with us
+              </p>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="text-center p-4 rounded-xl bg-white/5">
+                  <div className="font-display font-bold text-2xl text-ron-yellow mb-1">50+</div>
+                  <div className="text-ron-text-secondary text-xs">Brands Served</div>
+                </div>
+                <div className="text-center p-4 rounded-xl bg-white/5">
+                  <div className="flex items-center justify-center gap-1 mb-1">
+                    <span className="font-display font-bold text-2xl text-ron-yellow">4.9</span>
+                    <Star size={14} className="text-ron-yellow fill-ron-yellow" />
+                  </div>
+                  <div className="text-ron-text-secondary text-xs">Client Rating</div>
+                </div>
+                <div className="text-center p-4 rounded-xl bg-white/5">
+                  <div className="font-display font-bold text-2xl text-ron-yellow mb-1">90%</div>
+                  <div className="text-ron-text-secondary text-xs">Client Retention</div>
+                </div>
+                <div className="text-center p-4 rounded-xl bg-white/5">
+                  <div className="font-display font-bold text-2xl text-ron-yellow mb-1">3.5×</div>
+                  <div className="text-ron-text-secondary text-xs">Avg. ROAS</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Contact details — compact cards */}
+            <div className="process-card p-5 lg:p-6">
+              <h3 className="font-display font-semibold text-base text-white mb-4">Contact Information</h3>
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0">
+                    <Mail size={15} className="text-ron-yellow" />
                   </div>
                   <div>
-                    <p className="text-sm text-ron-text-secondary">Email</p>
-                    <p className="text-white">hello@resultsovernoise.co</p>
+                    <p className="text-xs text-ron-text-secondary">Email</p>
+                    <p className="text-white text-sm">hello@resultsovernoise.co</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center">
-                    <Phone size={18} className="text-ron-yellow" />
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0">
+                    <Phone size={15} className="text-ron-yellow" />
                   </div>
                   <div>
-                    <p className="text-sm text-ron-text-secondary">Phone</p>
-                    <p className="text-white">+1 (555) 013-2847</p>
+                    <p className="text-xs text-ron-text-secondary">Phone</p>
+                    <p className="text-white text-sm">+1 (555) 013-2847</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center">
-                    <Clock size={18} className="text-ron-yellow" />
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0">
+                    <Clock size={15} className="text-ron-yellow" />
                   </div>
                   <div>
-                    <p className="text-sm text-ron-text-secondary">Hours</p>
-                    <p className="text-white">Mon–Fri, 9am–6pm ET</p>
+                    <p className="text-xs text-ron-text-secondary">Hours</p>
+                    <p className="text-white text-sm">Mon–Fri, 9am–6pm ET</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center">
-                    <MapPin size={18} className="text-ron-yellow" />
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0">
+                    <MapPin size={15} className="text-ron-yellow" />
                   </div>
                   <div>
-                    <p className="text-sm text-ron-text-secondary">Location</p>
-                    <p className="text-white">Remote-first, based in New York</p>
+                    <p className="text-xs text-ron-text-secondary">Location</p>
+                    <p className="text-white text-sm">Remote-first, based in New York</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Quick Response */}
-            <div className="process-card p-5 lg:p-6 bg-ron-yellow/5 border-ron-yellow/20">
-              <h4 className="font-display font-semibold text-base text-white mb-2">
-                Fast Response Guarantee
-              </h4>
-              <p className="text-ron-text-secondary text-sm">
-                We respond to all inquiries within 24 hours. For urgent matters, 
-                feel free to call us directly.
-              </p>
+            {/* Clarify CTA — the form is the primary action, this note resolves the nav vs form conflict */}
+            <div className="process-card p-4 lg:p-5 bg-white/2 border-white/8">
+              <div className="flex items-start gap-3">
+                <Users size={15} className="text-ron-text-secondary flex-shrink-0 mt-0.5" />
+                <p className="text-ron-text-secondary text-xs leading-relaxed">
+                  Prefer a live conversation?{' '}
+                  <a href="tel:+15550132847" className="text-ron-yellow hover:underline">
+                    Call us directly
+                  </a>{' '}
+                  or use the form to tell us about your project — we'll follow up to schedule a call.
+                </p>
+              </div>
             </div>
+
           </div>
         </div>
       </div>

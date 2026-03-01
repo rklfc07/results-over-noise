@@ -36,6 +36,9 @@ const stats = [
   { value: '90%', label: 'Client Retention' },
 ];
 
+// Trusted by logos (placeholder brand names — replace with actual logos)
+const trustedBy = ['ShopNova', 'Stackly', 'Meridian', 'VitalCare', 'Finvault', 'UrbanNest'];
+
 const About = () => {
   const pageRef = useRef<HTMLDivElement>(null);
 
@@ -57,21 +60,48 @@ const About = () => {
   return (
     <div ref={pageRef} className="bg-ron-dark pt-24 pb-16 lg:pt-32 lg:pb-24">
       <div className="w-full px-5 lg:px-[5vw]">
+
         {/* Page Header */}
-        <div className="page-header mb-12 lg:mb-16">
-          <p className="micro-label mb-4">About Us</p>
-          <h1 className="font-display font-bold text-3xl sm:text-4xl lg:text-[clamp(36px,4vw,56px)] leading-[1.05] tracking-[-0.03em] text-white mb-4">
+        <div className="page-header mb-10 lg:mb-14">
+          {/* ABOUT US label — bold with yellow accent bar */}
+          <div className="flex items-center gap-3 mb-5">
+            <div className="w-1 h-5 bg-ron-yellow rounded-full" />
+            <p className="font-mono text-xs uppercase tracking-[0.15em] text-white font-semibold">
+              About Us
+            </p>
+          </div>
+
+          <h1 className="font-display font-bold text-3xl sm:text-4xl lg:text-[clamp(36px,4vw,56px)] leading-[1.05] tracking-[-0.03em] text-white mb-5">
             We're obsessed with <span className="text-ron-yellow">results</span>
           </h1>
-          <p className="text-ron-text-secondary text-base lg:text-lg max-w-2xl mb-6">
-            Results Over Noise is a performance marketing agency that helps businesses 
+
+          {/* Body text — slightly larger for readability */}
+          <p className="text-ron-text-secondary text-base lg:text-lg leading-relaxed max-w-2xl mb-4">
+            Results Over Noise is a performance marketing agency that helps businesses
             cut through the clutter and drive measurable growth.
           </p>
-          <p className="text-ron-text-secondary text-base lg:text-lg max-w-2xl mb-8">
-            Founded by marketers who were tired of vague reports and vanity metrics, 
-            we built an agency that focuses on what actually matters: revenue, ROI, and 
+          <p className="text-ron-text-secondary text-base lg:text-lg leading-relaxed max-w-2xl mb-8">
+            Founded by marketers who were tired of vague reports and vanity metrics,
+            we built an agency that focuses on what actually matters: revenue, ROI, and
             real business impact.
           </p>
+
+          {/* Trusted by strip */}
+          <div className="mb-8">
+            <p className="font-mono text-xs uppercase tracking-[0.12em] text-ron-text-secondary mb-4">
+              Trusted by
+            </p>
+            <div className="flex flex-wrap gap-3">
+              {trustedBy.map((brand) => (
+                <span
+                  key={brand}
+                  className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-white/60 text-sm font-medium"
+                >
+                  {brand}
+                </span>
+              ))}
+            </div>
+          </div>
         </div>
 
         {/* Stats */}
@@ -100,16 +130,24 @@ const About = () => {
               Strategy before spend
             </h2>
             <p className="text-ron-text-secondary text-sm lg:text-base leading-relaxed mb-4">
-              We don't believe in throwing money at ads and hoping for the best. Every campaign 
+              We don't believe in throwing money at ads and hoping for the best. Every campaign
               starts with deep research into your market, competitors, and customers.
             </p>
             <p className="text-ron-text-secondary text-sm lg:text-base leading-relaxed mb-6">
-              This strategic foundation allows us to build campaigns that are targeted, efficient, 
+              This strategic foundation allows us to build campaigns that are targeted, efficient,
               and designed to deliver results from day one.
             </p>
-            <Link to="/services" className="text-ron-yellow text-sm flex items-center gap-2">
-              Explore our services <ArrowRight size={14} />
-            </Link>
+
+            {/* Explore services — styled as a proper button, not a plain link */}
+            <div>
+              <Link
+                to="/services"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-full border border-white/25 text-white text-sm font-medium hover:border-ron-yellow hover:text-ron-yellow transition-all duration-300 group"
+              >
+                Explore our services
+                <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform duration-300" />
+              </Link>
+            </div>
           </div>
         </div>
 
