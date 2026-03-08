@@ -57,7 +57,7 @@ const projects = [
     client: 'Trash Butler',
     country: 'USA 🇺🇸',
     industry: 'Property Services',
-    category: 'SEO',
+    category: 'Lead Generation',
     logo: '/images/logos/trash_buttler.png',
     result: '+68% Qualified Leads',
     resultIcon: Users,
@@ -72,7 +72,7 @@ const projects = [
     client: 'Dr. E. Wirth & Co.',
     country: 'Germany 🇩🇪',
     industry: 'Insurance',
-    category: 'SEO',
+    category: 'Content Marketing',
     logo: '/images/logos/DrEwirth.png',
     result: '4× Pipeline Growth',
     resultIcon: BarChart3,
@@ -87,9 +87,9 @@ const projects = [
     client: 'Fit & Fine',
     country: 'India 🇮🇳',
     industry: 'Health & Wellness',
-    category: 'Website Development',
+    category: 'Social Media',
     logo: '/images/logos/fit_and_fine.svg',
-    result: 'Clean website from scratch',
+    result: '-38% Cost Per Lead',
     resultIcon: TrendingDown,
     description: 'Scaled Meta ad campaigns for a health and wellness brand. Introduced creative testing and audience segmentation to significantly reduce cost per lead while growing reach.',
     tags: ['Meta Ads', 'Creative Testing', 'Analytics'],
@@ -99,7 +99,7 @@ const projects = [
   },
 ];
 
-const categories = ['All', 'Paid Advertising', 'SEO', 'Lead Generation', 'Website Development'];
+const categories = ['All', 'Paid Advertising', 'SEO', 'Lead Generation', 'Content Marketing', 'Social Media'];
 
 const Portfolio = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -240,7 +240,7 @@ const Portfolio = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-16 lg:py-24 bg-ron-lavender">
+      <section className="py-16 lg:py-24 bg-white/5 border-t border-white/10">
         <div className="w-full px-5 lg:px-[5vw] text-center">
           <h2 className="font-display font-bold text-2xl sm:text-3xl lg:text-[clamp(30px,3.2vw,48px)] leading-[1.1] tracking-[-0.02em] text-white mb-4">
             Want results like <span className="text-ron-yellow">these</span>?
