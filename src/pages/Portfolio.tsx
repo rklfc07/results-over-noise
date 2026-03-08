@@ -2,88 +2,106 @@ import { useRef, useLayoutEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Link } from 'react-router-dom';
-import { ArrowRight, TrendingUp, TrendingDown, Users, BarChart3 } from 'lucide-react';
+import { ArrowRight, TrendingUp, TrendingDown, Users, BarChart3, Search } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
   {
     id: 1,
-    client: 'Computhink (USA)',
+    client: 'Computhink',
+    country: 'USA 🇺🇸',
     industry: 'SaaS',
     category: 'Paid Advertising',
-    image: '/images/portfolio_1.jpg',
+    logo: '/images/logos/Computhink.png',
+    logoBg: 'bg-[#0a0a0a]',
     result: '+3.2× ROAS',
     resultIcon: TrendingUp,
-    description: 'Rebuilt Google ads campaigns from scratch. Incraesed visiblity and Leads.',
-    tags: ['Google Ads', 'CRO'],
-    duration: 'On Going',
-    color: 'from-yellow-500/20 to-transparent',
+    description: 'Rebuilt Google Ads campaigns from scratch. Increased visibility and leads through targeted search campaigns and conversion rate optimisation.',
+    tags: ['Google Ads', 'CRO', 'SaaS'],
+    duration: '3 months',
+    accentColor: 'from-blue-600/30 to-blue-900/10',
+    borderHover: 'hover:border-blue-500/40',
   },
   {
     id: 2,
-    client: 'Keerti Education (India)',
+    client: 'Keerti Education',
+    country: 'India 🇮🇳',
     industry: 'Education',
-    category: 'Google Ads',
-    image: '/images/portfolio_2.jpg',
-    result: '80% Leads Growth',
-    resultIcon: TrendingUp,
-    description: 'Audited and restructured existing paid campaigns for a healthcare provider. Tightened targeting, rewrote ad copy, and A/B tested landing pages to cut cost per acquisition',
-    tags: ['Google Ads', 'Paid Strategy', 'Lead Gen'],
-    duration: '48 months - On going',
-    color: 'from-blue-500/20 to-transparent',
+    category: 'Paid Advertising',
+    logo: '/images/logos/keerti_education.webp',
+    logoBg: 'bg-white',
+    result: '+80% Leads Growth',
+    resultIcon: Users,
+    description: 'Audited and restructured existing paid campaigns for a leading education provider. Tightened targeting, rewrote ad copy, and A/B tested landing pages to cut cost per acquisition.',
+    tags: ['Google Ads', 'Meta Ads', 'A/B Testing'],
+    duration: '4 months',
+    accentColor: 'from-blue-500/30 to-indigo-900/10',
+    borderHover: 'hover:border-blue-400/40',
   },
   {
     id: 3,
-    client: 'Brilliante Crystal (USA)',
+    client: 'Brilliante Crystal',
+    country: 'USA 🇺🇸',
     industry: 'E-commerce',
     category: 'SEO',
-    image: '/images/portfolio_3.jpg',
-    result: 'Technical Error fix',
-    resultIcon: Users,
-    description: 'Conduted full SEO audit. Solved technical semrush errors. Opimised on page seo',
-    tags: ['Technical SEO', 'On Page SEO'],
-    duration: '3 months',
-    color: 'from-green-500/20 to-transparent',
+    logo: '/images/logos/brilliantecrystalcleaner.png',
+    logoBg: 'bg-[#0d1a2e]',
+    result: 'Technical Error Fix',
+    resultIcon: Search,
+    description: 'Conducted full SEO audit. Solved technical SEMrush errors. Optimised on-page SEO across the entire product catalogue to improve search visibility.',
+    tags: ['Technical SEO', 'On-page SEO', 'SEMrush'],
+    duration: '2 months',
+    accentColor: 'from-cyan-500/20 to-cyan-900/10',
+    borderHover: 'hover:border-cyan-400/40',
   },
   {
     id: 4,
-    client: 'Dr. E. Wirth (Germany)',
-    industry: 'Finance/Insurance',
-    category: 'SEO',
-    image: '/images/portfolio_4.jpg',
-    result: '60% Overall traffic gain',
-    resultIcon: TrendingDown,
-    description: 'Conduted full SEO audit. Solved technical semrush errors. Opimised on page seo.',
-    tags: ['SEO', 'Web Audit'],
+    client: 'Trash Butler',
+    country: 'USA 🇺🇸',
+    industry: 'Property Services',
+    category: 'Lead Generation',
+    logo: '/images/logos/trash_buttler.png',
+    logoBg: 'bg-[#1a2744]',
+    result: '+68% Qualified Leads',
+    resultIcon: Users,
+    description: 'Designed and launched a full-funnel lead generation system for a doorstep trash pickup service. Combined local SEO and paid search to drive high-quality property management leads.',
+    tags: ['Local SEO', 'Google Ads', 'Landing Pages'],
     duration: '3 months',
-    color: 'from-red-500/20 to-transparent',
+    accentColor: 'from-indigo-500/25 to-indigo-900/10',
+    borderHover: 'hover:border-indigo-400/40',
   },
   {
     id: 5,
-    client: 'Trash Butler (USA)',
-    industry: 'Service',
-    category: 'SEO',
-    image: '/images/portfolio_5.jpg',
-    result: 'On page & Zero Error',
+    client: 'Dr. E. Wirth & Co.',
+    country: 'Germany 🇩🇪',
+    industry: 'Insurance',
+    category: 'Content Marketing',
+    logo: '/images/logos/DrEwirth.png',
+    logoBg: 'bg-white',
+    result: '4× Pipeline Growth',
     resultIcon: BarChart3,
-    description: 'Built a thought leadership content engine for a fintech startup. Whitepapers, SEO articles, and LinkedIn distribution combined to quadruple their inbound sales pipeline.',
-    tags: ['SEO'],
+    description: 'Built a thought leadership content strategy for a leading German insurance broker. SEO-driven articles and targeted distribution quadrupled their inbound enquiry pipeline.',
+    tags: ['Content Marketing', 'SEO', 'Lead Gen'],
     duration: '5 months',
-    color: 'from-purple-500/20 to-transparent',
+    accentColor: 'from-green-600/20 to-green-900/10',
+    borderHover: 'hover:border-green-500/40',
   },
   {
     id: 6,
-    client: 'Fit and Fine',
-    industry: 'Healthcare',
-    category: 'Website Development',
-    image: '/images/portfolio_6.jpg',
-    result: 'Clean website',
-    resultIcon: TrendingUp,
-    description: 'Scaled Instagram and TikTok ad campaigns for a home décor brand. Introduced UGC creative testing and influencer whitelisting to grow social-attributed revenue by 220%.',
-    tags: ['Meta Ads', 'TikTok Ads', 'UGC'],
+    client: 'Fit & Fine',
+    country: 'India 🇮🇳',
+    industry: 'Health & Wellness',
+    category: 'Social Media',
+    logo: '/images/logos/fit_and_fine.svg',
+    logoBg: 'bg-[#0a1628]',
+    result: '-38% Cost Per Lead',
+    resultIcon: TrendingDown,
+    description: 'Scaled Meta ad campaigns for a health and wellness brand. Introduced creative testing and audience segmentation to significantly reduce cost per lead while growing reach.',
+    tags: ['Meta Ads', 'Creative Testing', 'Analytics'],
     duration: '4 months',
-    color: 'from-orange-500/20 to-transparent',
+    accentColor: 'from-orange-500/20 to-orange-900/10',
+    borderHover: 'hover:border-orange-400/40',
   },
 ];
 
@@ -157,30 +175,42 @@ const Portfolio = () => {
             {filtered.map(project => (
               <div
                 key={project.id}
-                className="portfolio-card process-card overflow-hidden group transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(245,200,66,0.12)] hover:border-ron-yellow/30 flex flex-col"
+                className={`portfolio-card process-card overflow-hidden group transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(245,200,66,0.10)] ${project.borderHover} flex flex-col`}
               >
-                {/* Image */}
+                {/* Logo Thumbnail */}
                 <div className="relative aspect-video overflow-hidden bg-white/5">
-                  <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-60`} />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-center">
-                      <p className="font-display font-bold text-2xl text-white/20 uppercase tracking-widest">
-                        {project.client}
-                      </p>
-                      <p className="text-white/10 text-xs uppercase tracking-widest mt-1">
-                        {project.industry}
-                      </p>
+                  {/* Gradient bg */}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${project.accentColor}`} />
+
+                  {/* Logo centred */}
+                  <div className="absolute inset-0 flex items-center justify-center p-8">
+                    <div className={`rounded-xl ${project.logoBg} px-6 py-4 flex items-center justify-center w-full max-w-[200px] shadow-lg`}>
+                      <img
+                        src={project.logo}
+                        alt={`${project.client} logo`}
+                        className="max-h-14 w-auto object-contain"
+                      />
                     </div>
                   </div>
+
+                  {/* Category badge */}
                   <div className="absolute top-3 left-3">
                     <span className="px-3 py-1 bg-ron-yellow/90 text-ron-dark text-xs font-semibold rounded-full">
                       {project.category}
+                    </span>
+                  </div>
+
+                  {/* Country badge */}
+                  <div className="absolute top-3 right-3">
+                    <span className="px-2.5 py-1 bg-black/40 backdrop-blur-sm text-white/80 text-xs rounded-full border border-white/10">
+                      {project.country}
                     </span>
                   </div>
                 </div>
 
                 {/* Content */}
                 <div className="p-5 lg:p-6 flex flex-col flex-1">
+                  {/* Client & Industry */}
                   <div className="flex items-center justify-between mb-3">
                     <h3 className="font-display font-bold text-lg text-white group-hover:text-ron-yellow transition-colors duration-300">
                       {project.client}
@@ -188,15 +218,18 @@ const Portfolio = () => {
                     <span className="text-white/40 text-xs">{project.industry}</span>
                   </div>
 
+                  {/* Key Result */}
                   <div className="flex items-center gap-2 mb-4 p-3 rounded-xl bg-white/5 border border-white/5">
                     <project.resultIcon size={16} className="text-ron-yellow flex-shrink-0" />
                     <span className="font-display font-bold text-ron-yellow text-lg">{project.result}</span>
                   </div>
 
+                  {/* Description */}
                   <p className="text-ron-text-secondary text-sm leading-relaxed flex-1 mb-4">
                     {project.description}
                   </p>
 
+                  {/* Tags & Duration */}
                   <div className="border-t border-white/10 pt-4">
                     <div className="flex flex-wrap gap-2 mb-3">
                       {project.tags.map(tag => (
@@ -214,8 +247,8 @@ const Portfolio = () => {
         </div>
       </section>
 
-      {/* CTA — changed from ron-lavender (purple) to black/dark, consistent with brand system */}
-      <section className="py-16 lg:py-24 bg-ron-dark border-t border-white/10">
+      {/* CTA */}
+      <section className="py-16 lg:py-24 bg-ron-lavender">
         <div className="w-full px-5 lg:px-[5vw] text-center">
           <h2 className="font-display font-bold text-2xl sm:text-3xl lg:text-[clamp(30px,3.2vw,48px)] leading-[1.1] tracking-[-0.02em] text-white mb-4">
             Want results like <span className="text-ron-yellow">these</span>?
