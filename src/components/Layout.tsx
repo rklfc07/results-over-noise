@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { ArrowRight, X, Menu, ChevronDown, ChevronRight } from 'lucide-react';
 
@@ -11,7 +11,13 @@ const marketingLinks = [
   { label: 'Content Marketing', href: '/services/content-marketing' },
 ];
 
+const buildLinks = [
+  { label: 'Website Development', href: '/services/web-development' },
+  { label: 'SaaS Product', href: '/services/saas-product' },
+];
+
 const navLinks = [
+  { label: 'Home', href: '/' },
   { label: 'Services', href: '/services', hasDropdown: true },
   { label: 'Portfolio', href: '/portfolio' },
   { label: 'About', href: '/about' },
@@ -21,11 +27,15 @@ const navLinks = [
 const Layout = () => {
   const location = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [servicesOpen, setServicesOpen] = useState(false); // desktop dropdown
-  const [mobileServicesOpen, setMobileServicesOpen] = useState(false); // mobile accordion
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
+  const hoverTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const isActive = (href: string) => location.pathname === href || location.pathname.startsWith(href + '/');
+  const isActive = (href: string) =>
+    href === '/'
+      ? location.pathname === '/'
+      : location.pathname === href || location.pathname.startsWith(href + '/');
 
   useEffect(() => {
     setMobileOpen(false);
@@ -38,16 +48,14 @@ const Layout = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close dropdown on outside click
-  useEffect(() => {
-    if (!servicesOpen) return;
-    const handler = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      if (!target.closest('#services-dropdown-wrapper')) setServicesOpen(false);
-    };
-    document.addEventListener('mousedown', handler);
-    return () => document.removeEventListener('mousedown', handler);
-  }, [servicesOpen]);
+  const handleMouseEnter = () => {
+    if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
+    setServicesOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    hoverTimeoutRef.current = setTimeout(() => setServicesOpen(false), 150);
+  };
 
   return (
     <>
@@ -67,9 +75,13 @@ const Layout = () => {
           <nav className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) =>
               link.hasDropdown ? (
-                <div key={link.label} id="services-dropdown-wrapper" className="relative">
+                <div
+                  key={link.label}
+                  className="relative"
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                >
                   <button
-                    onClick={() => setServicesOpen((v) => !v)}
                     className={`flex items-center gap-1 text-sm transition-colors ${
                       isActive(link.href) ? 'text-ron-yellow' : 'text-ron-text-secondary hover:text-white'
                     }`}
@@ -81,65 +93,65 @@ const Layout = () => {
                     />
                   </button>
 
-                  {/* Dropdown */}
-                  {servicesOpen && (
-                    <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-[480px] bg-ron-dark border border-white/10 rounded-2xl shadow-[0_24px_64px_rgba(0,0,0,0.6)] p-5 grid grid-cols-2 gap-1">
-                      {/* Marketing column */}
-                      <div>
-                        <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-ron-text-secondary mb-3 px-2">
-                          Marketing
-                        </p>
-                        {marketingLinks.map((item) => (
-                          <Link
-                            key={item.href}
-                            to={item.href}
-                            className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm transition-colors group ${
-                              isActive(item.href)
-                                ? 'text-ron-yellow bg-ron-yellow/10'
-                                : 'text-ron-text-secondary hover:text-white hover:bg-white/5'
-                            }`}
-                          >
-                            <ChevronRight size={12} className="opacity-0 group-hover:opacity-100 transition-opacity text-ron-yellow" />
-                            {item.label}
-                          </Link>
-                        ))}
-                      </div>
+                  {/* Hover Dropdown */}
+                  <div
+                    className={`absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[480px] bg-ron-dark border border-white/10 rounded-2xl shadow-[0_24px_64px_rgba(0,0,0,0.6)] p-5 grid grid-cols-2 gap-1 transition-all duration-200 ${
+                      servicesOpen
+                        ? 'opacity-100 pointer-events-auto translate-y-0'
+                        : 'opacity-0 pointer-events-none -translate-y-1'
+                    }`}
+                  >
+                    {/* Marketing column */}
+                    <div>
+                      <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-ron-text-secondary mb-3 px-2">
+                        Marketing
+                      </p>
+                      {marketingLinks.map((item) => (
+                        <Link
+                          key={item.href}
+                          to={item.href}
+                          className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm transition-colors group ${
+                            isActive(item.href)
+                              ? 'text-ron-yellow bg-ron-yellow/10'
+                              : 'text-ron-text-secondary hover:text-white hover:bg-white/5'
+                          }`}
+                        >
+                          <ChevronRight size={12} className="opacity-0 group-hover:opacity-100 transition-opacity text-ron-yellow" />
+                          {item.label}
+                        </Link>
+                      ))}
+                    </div>
 
-                      {/* Build column */}
-                      <div>
-                        <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-ron-text-secondary mb-3 px-2">
-                          Build
-                        </p>
-                        {[
-                          { label: 'Website Development', href: '/services/web-development' },
-                          { label: 'SaaS Product', href: '/services/saas-product' },
-                        ].map((item) => (
-                          <Link
-                            key={item.href}
-                            to={item.href}
-                            className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm transition-colors group ${
-                              isActive(item.href)
-                                ? 'text-ron-yellow bg-ron-yellow/10'
-                                : 'text-ron-text-secondary hover:text-white hover:bg-white/5'
-                            }`}
-                          >
-                            <ChevronRight size={12} className="opacity-0 group-hover:opacity-100 transition-opacity text-ron-yellow" />
-                            {item.label}
-                          </Link>
-                        ))}
+                    {/* Build column */}
+                    <div>
+                      <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-ron-text-secondary mb-3 px-2">
+                        Build
+                      </p>
+                      {buildLinks.map((item) => (
+                        <Link
+                          key={item.href}
+                          to={item.href}
+                          className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm transition-colors group ${
+                            isActive(item.href)
+                              ? 'text-ron-yellow bg-ron-yellow/10'
+                              : 'text-ron-text-secondary hover:text-white hover:bg-white/5'
+                          }`}
+                        >
+                          <ChevronRight size={12} className="opacity-0 group-hover:opacity-100 transition-opacity text-ron-yellow" />
+                          {item.label}
+                        </Link>
+                      ))}
 
-                        {/* All services link */}
-                        <div className="mt-4 pt-4 border-t border-white/10">
-                          <Link
-                            to="/services"
-                            className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-ron-yellow hover:bg-ron-yellow/10 transition-colors"
-                          >
-                            All services <ArrowRight size={12} />
-                          </Link>
-                        </div>
+                      <div className="mt-4 pt-4 border-t border-white/10">
+                        <Link
+                          to="/services"
+                          className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-ron-yellow hover:bg-ron-yellow/10 transition-colors"
+                        >
+                          All services <ArrowRight size={12} />
+                        </Link>
                       </div>
                     </div>
-                  )}
+                  </div>
                 </div>
               ) : (
                 <Link
@@ -178,6 +190,16 @@ const Layout = () => {
         }`}
       >
         <div className="flex flex-col px-6 pt-24 pb-12 gap-2">
+          {/* Home */}
+          <Link
+            to="/"
+            className={`py-3 font-display text-xl transition-colors ${
+              isActive('/') ? 'text-ron-yellow' : 'text-white hover:text-ron-yellow'
+            }`}
+          >
+            Home
+          </Link>
+
           {/* Services accordion */}
           <div>
             <button
@@ -195,7 +217,6 @@ const Layout = () => {
 
             {mobileServicesOpen && (
               <div className="pl-4 pb-3 flex flex-col gap-1">
-                {/* Marketing group */}
                 <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-ron-text-secondary mt-3 mb-2">
                   Marketing
                 </p>
@@ -211,14 +232,10 @@ const Layout = () => {
                   </Link>
                 ))}
 
-                {/* Build group */}
                 <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-ron-text-secondary mt-4 mb-2">
                   Build
                 </p>
-                {[
-                  { label: 'Website Development', href: '/services/web-development' },
-                  { label: 'SaaS Product', href: '/services/saas-product' },
-                ].map((item) => (
+                {buildLinks.map((item) => (
                   <Link
                     key={item.href}
                     to={item.href}
@@ -240,9 +257,9 @@ const Layout = () => {
             )}
           </div>
 
-          {/* Other nav links */}
+          {/* Other nav links (exclude Home and Services) */}
           {navLinks
-            .filter((l) => !l.hasDropdown)
+            .filter((l) => !l.hasDropdown && l.href !== '/')
             .map((link) => (
               <Link
                 key={link.label}
@@ -290,10 +307,7 @@ const Layout = () => {
               <ul className="space-y-2">
                 {marketingLinks.map((item) => (
                   <li key={item.label}>
-                    <Link
-                      to={item.href}
-                      className="text-sm text-ron-text-secondary hover:text-white transition-colors"
-                    >
+                    <Link to={item.href} className="text-sm text-ron-text-secondary hover:text-white transition-colors">
                       {item.label}
                     </Link>
                   </li>
@@ -306,15 +320,9 @@ const Layout = () => {
                 Build
               </h4>
               <ul className="space-y-2 mb-6">
-                {[
-                  { label: 'Website Development', href: '/services/web-development' },
-                  { label: 'SaaS Product', href: '/services/saas-product' },
-                ].map((item) => (
+                {buildLinks.map((item) => (
                   <li key={item.label}>
-                    <Link
-                      to={item.href}
-                      className="text-sm text-ron-text-secondary hover:text-white transition-colors"
-                    >
+                    <Link to={item.href} className="text-sm text-ron-text-secondary hover:text-white transition-colors">
                       {item.label}
                     </Link>
                   </li>
@@ -325,14 +333,10 @@ const Layout = () => {
               </h4>
               <ul className="space-y-2">
                 <li>
-                  <Link to="/about" className="text-sm text-ron-text-secondary hover:text-white transition-colors">
-                    About Us
-                  </Link>
+                  <Link to="/about" className="text-sm text-ron-text-secondary hover:text-white transition-colors">About Us</Link>
                 </li>
                 <li>
-                  <Link to="/contact" className="text-sm text-ron-text-secondary hover:text-white transition-colors">
-                    Contact
-                  </Link>
+                  <Link to="/contact" className="text-sm text-ron-text-secondary hover:text-white transition-colors">Contact</Link>
                 </li>
               </ul>
             </div>
@@ -347,9 +351,7 @@ const Layout = () => {
           </div>
 
           <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-ron-text-secondary text-xs">
-              © Results Over Noise. All rights reserved.
-            </p>
+            <p className="text-ron-text-secondary text-xs">© Results Over Noise. All rights reserved.</p>
           </div>
         </div>
       </footer>

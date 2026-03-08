@@ -2,16 +2,22 @@ import { useRef, useLayoutEffect, useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Target, FileText, BarChart3, TrendingDown, TrendingUp, Users, Quote, CheckCircle2, Zap, Shield, BarChart2, Layout, Layers } from 'lucide-react';
+import { ArrowRight, Target, FileText, BarChart3, TrendingDown, TrendingUp, Users, Quote, CheckCircle2, Zap, Shield, BarChart2, Lightbulb, Layout, Layers } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const services = [
   {
-    icon: Target,
-    title: 'Paid Media',
-    description: 'Search, social, programmatic—optimized weekly.',
-    href: '/services/paid-advertising',
+    icon: Lightbulb,
+    title: 'Marketing Strategy',
+    description: 'Roadmaps that align every channel to your business goals.',
+    href: '/services/marketing-strategy',
+  },
+  {
+    icon: Users,
+    title: 'Lead Generation',
+    description: 'Systems that fill your pipeline with qualified prospects.',
+    href: '/services/lead-generation',
   },
   {
     icon: FileText,
@@ -20,10 +26,10 @@ const services = [
     href: '/services/seo',
   },
   {
-    icon: BarChart3,
-    title: 'Analytics & CRO',
-    description: 'Clear reporting + tests that lift conversion.',
-    href: '/services/marketing-strategy',
+    icon: Target,
+    title: 'Paid Advertising',
+    description: 'Search, social, programmatic—optimized weekly.',
+    href: '/services/paid-advertising',
   },
   {
     icon: Layout,
@@ -284,7 +290,6 @@ const Home = () => {
         scrollTrigger: { trigger: testimonialRef.current, start: 'top 75%', toggleActions: 'play none none reverse' },
       });
     });
-
     return () => ctx.revert();
   }, []);
 
@@ -344,17 +349,9 @@ const Home = () => {
                 media, measurement, and the technology to power it all.
               </p>
             </div>
-            {/* 3-col on md+, 2-col last row centred via justify-center on the grid */}
             <div className="services-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6 mb-8">
               {services.map((service, index) => (
-                <Link
-                  key={index}
-                  to={service.href}
-                  className={`service-card process-card p-5 lg:p-6 block group transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_30px_rgba(245,200,66,0.15)] hover:border-ron-yellow/40 cursor-pointer${
-                    // Centre the last two cards when 5 items in a 3-col grid
-                    index === 3 ? ' sm:col-start-1 lg:col-start-auto' : ''
-                  }`}
-                >
+                <Link key={index} to={service.href} className="service-card process-card p-5 lg:p-6 block group transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_30px_rgba(245,200,66,0.15)] hover:border-ron-yellow/40 cursor-pointer">
                   <div className="flex items-start gap-4">
                     <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center flex-shrink-0 group-hover:bg-ron-yellow/10 transition-colors duration-300">
                       <service.icon size={20} className="text-ron-yellow" />

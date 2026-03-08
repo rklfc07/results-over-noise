@@ -2,19 +2,11 @@ import { useRef, useLayoutEffect, useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Search, Target, Share2, FileText, Lightbulb, Users, Layout, Layers } from 'lucide-react';
+import { ArrowRight, Search, Target, Share2, FileText, Lightbulb, Users } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const marketingServices = [
-  {
-    icon: Lightbulb,
-    title: 'Marketing Strategy',
-    outcome: 'Get a clear roadmap so every channel works toward one goal.',
-    description: 'Comprehensive marketing roadmaps tailored to your business goals. Strategic planning that aligns all your marketing efforts for maximum impact.',
-    href: '/services/marketing-strategy',
-    features: ['Market Research', 'Competitor Analysis', 'Channel Planning', 'KPI Setting'],
-  },
+const allServices = [
   {
     icon: Search,
     title: 'SEO & Organic Traffic',
@@ -40,14 +32,6 @@ const marketingServices = [
     features: ['Content Creation', 'Community Management', 'Paid Social', 'Analytics'],
   },
   {
-    icon: Users,
-    title: 'Lead Generation',
-    outcome: 'Fill your pipeline with qualified leads, month after month.',
-    description: 'Fill your pipeline with qualified prospects. We create systems that consistently generate high-quality leads for your sales team.',
-    href: '/services/lead-generation',
-    features: ['Landing Pages', 'Lead Magnets', 'Nurturing Sequences', 'CRM Integration'],
-  },
-  {
     icon: FileText,
     title: 'Content Marketing',
     outcome: 'Create assets that educate, attract, and convert on autopilot.',
@@ -55,28 +39,25 @@ const marketingServices = [
     href: '/services/content-marketing',
     features: ['Blog Content', 'Lead Magnets', 'Email Campaigns', 'Video Scripts'],
   },
-];
-
-const buildServices = [
   {
-    icon: Layout,
-    title: 'Website Development',
-    outcome: 'A fast, beautiful site that converts visitors into customers.',
-    description: 'Fast, beautiful, conversion-focused websites built from scratch. From landing pages to full marketing sites—designed to perform and built to scale.',
-    href: '/services/web-development',
-    features: ['Custom Design', 'Responsive Build', 'CMS Integration', 'Performance Optimisation'],
+    icon: Lightbulb,
+    title: 'Marketing Strategy',
+    outcome: 'Get a clear roadmap so every channel works toward one goal.',
+    description: 'Comprehensive marketing roadmaps tailored to your business goals. Strategic planning that aligns all your marketing efforts for maximum impact.',
+    href: '/services/marketing-strategy',
+    features: ['Market Research', 'Competitor Analysis', 'Channel Planning', 'KPI Setting'],
   },
   {
-    icon: Layers,
-    title: 'SaaS Product Growth',
-    outcome: 'Grow MRR, reduce churn, and scale your product faster.',
-    description: 'We help SaaS teams grow MRR by optimising every stage of the product funnel—from trial sign-up to loyal paying customer. Less churn, more revenue.',
-    href: '/services/saas-product',
-    features: ['Onboarding Optimisation', 'Churn Reduction', 'Funnel Analytics', 'Growth Strategy'],
+    icon: Users,
+    title: 'Lead Generation',
+    outcome: 'Fill your pipeline with qualified leads, month after month.',
+    description: 'Fill your pipeline with qualified prospects. We create systems that consistently generate high-quality leads for your sales team.',
+    href: '/services/lead-generation',
+    features: ['Landing Pages', 'Lead Magnets', 'Nurturing Sequences', 'CRM Integration'],
   },
 ];
 
-// Rotating stats for the header right side
+// Rotating stats for the hero right side
 const rotatingStats = [
   { value: '3.2×', label: 'Average ROAS' },
   { value: '-42%', label: 'Lower CPA' },
@@ -117,6 +98,7 @@ const RotatingStat = () => {
           {stat.label}
         </div>
       </div>
+      {/* Dots */}
       <div className="flex gap-1.5 mt-8">
         {rotatingStats.map((_, i) => (
           <div
@@ -129,43 +111,6 @@ const RotatingStat = () => {
     </div>
   );
 };
-
-const ServiceCard = ({ service }: { service: typeof marketingServices[0] }) => (
-  <Link
-    to={service.href}
-    className="service-item process-card p-5 lg:p-6 card-hover block group"
-  >
-    <div className="flex items-start gap-5">
-      <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-ron-yellow/10 transition-colors duration-300">
-        <service.icon size={22} className="text-ron-yellow" />
-      </div>
-      <div className="flex-1 min-w-0">
-        <div className="flex items-start justify-between gap-4 mb-1">
-          <h3 className="font-display font-semibold text-lg lg:text-xl text-white group-hover:text-ron-yellow transition-colors duration-300">
-            {service.title}
-          </h3>
-          <ArrowRight size={16} className="text-ron-yellow flex-shrink-0 mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-        </div>
-        <p className="text-ron-yellow/80 text-sm font-medium mb-2">
-          {service.outcome}
-        </p>
-        <p className="text-ron-text-secondary text-sm leading-relaxed mb-3">
-          {service.description}
-        </p>
-        <div className="flex flex-wrap gap-2">
-          {service.features.map((feature, fIndex) => (
-            <span
-              key={fIndex}
-              className="px-2.5 py-1 rounded-full bg-white/5 text-ron-text-secondary text-xs"
-            >
-              {feature}
-            </span>
-          ))}
-        </div>
-      </div>
-    </div>
-  </Link>
-);
 
 const Services = () => {
   const pageRef = useRef<HTMLDivElement>(null);
@@ -193,7 +138,7 @@ const Services = () => {
     <div ref={pageRef} className="bg-ron-dark pt-24 pb-16 lg:pt-32 lg:pb-24">
       <div className="w-full px-5 lg:px-[5vw]">
 
-        {/* Page Header */}
+        {/* Page Header — two column: headline left, rotating stat right */}
         <div className="page-header mb-12 lg:mb-16">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             <div>
@@ -202,10 +147,10 @@ const Services = () => {
                 Services that <span className="text-ron-yellow">deliver</span>
               </h1>
               <p className="text-ron-text-secondary text-base lg:text-lg max-w-xl">
-                Full-funnel marketing, web development, and SaaS growth solutions designed to
-                drive measurable results for your business.
+                Full-funnel marketing solutions designed to drive measurable growth for your business.
               </p>
             </div>
+            {/* Rotating stat — fills the empty right side */}
             <div
               className="hidden lg:block process-card h-40"
               style={{ border: '1px solid rgba(242,232,75,0.15)' }}
@@ -215,30 +160,54 @@ const Services = () => {
           </div>
         </div>
 
-        {/* Marketing Services */}
-        <div className="services-list mb-12 lg:mb-16">
-          <h2 className="font-display font-semibold text-xl text-white mb-6 flex items-center gap-3">
-            <span className="w-8 h-px bg-ron-yellow inline-block" />
-            Marketing
-          </h2>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6">
-            {marketingServices.map((service, index) => (
-              <ServiceCard key={index} service={service} />
-            ))}
-          </div>
-        </div>
+        {/* Services List — Option A: Stacked layout (full-width rows) */}
+        <div className="services-list flex flex-col gap-4 mb-12">
+          {allServices.map((service, index) => (
+            <Link
+              key={index}
+              to={service.href}
+              className="service-item process-card p-5 lg:p-6 card-hover block group"
+            >
+              <div className="flex items-start gap-5">
+                {/* Icon */}
+                <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-ron-yellow/10 transition-colors duration-300">
+                  <service.icon size={22} className="text-ron-yellow" />
+                </div>
 
-        {/* Build Services */}
-        <div className="mb-12 lg:mb-16">
-          <h2 className="font-display font-semibold text-xl text-white mb-6 flex items-center gap-3">
-            <span className="w-8 h-px bg-ron-yellow inline-block" />
-            Build
-          </h2>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6">
-            {buildServices.map((service, index) => (
-              <ServiceCard key={index} service={service} />
-            ))}
-          </div>
+                <div className="flex-1 min-w-0">
+                  {/* Title + arrow */}
+                  <div className="flex items-start justify-between gap-4 mb-1">
+                    <h3 className="font-display font-semibold text-lg lg:text-xl text-white group-hover:text-ron-yellow transition-colors duration-300">
+                      {service.title}
+                    </h3>
+                    <ArrowRight size={16} className="text-ron-yellow flex-shrink-0 mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  </div>
+
+                  {/* Outcome — results-first hook */}
+                  <p className="text-ron-yellow/80 text-sm font-medium mb-2">
+                    {service.outcome}
+                  </p>
+
+                  {/* Description */}
+                  <p className="text-ron-text-secondary text-sm leading-relaxed mb-3">
+                    {service.description}
+                  </p>
+
+                  {/* Feature tags */}
+                  <div className="flex flex-wrap gap-2">
+                    {service.features.map((feature, fIndex) => (
+                      <span
+                        key={fIndex}
+                        className="px-2.5 py-1 rounded-full bg-white/5 text-ron-text-secondary text-xs"
+                      >
+                        {feature}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </Link>
+          ))}
         </div>
 
         {/* CTA */}
@@ -254,7 +223,6 @@ const Services = () => {
             <ArrowRight size={16} />
           </Link>
         </div>
-
       </div>
     </div>
   );

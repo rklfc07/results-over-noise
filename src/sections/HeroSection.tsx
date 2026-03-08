@@ -22,10 +22,8 @@ const HeroSection = () => {
     if (!section || !headline || !mediaCard || !body || !cta) return;
 
     const ctx = gsap.context(() => {
-      // Load Animation (on mount)
       const loadTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
-      // Media card entrance
       loadTl.fromTo(
         mediaCard,
         { x: '12vw', scale: 0.96, opacity: 0 },
@@ -33,7 +31,6 @@ const HeroSection = () => {
         0.2
       );
 
-      // Headline lines stagger
       const headlineLines = headline.querySelectorAll('.headline-line');
       loadTl.fromTo(
         headlineLines,
@@ -42,7 +39,6 @@ const HeroSection = () => {
         0.3
       );
 
-      // Body + CTA
       loadTl.fromTo(
         [body, cta],
         { y: 24, opacity: 0 },
@@ -50,7 +46,6 @@ const HeroSection = () => {
         0.6
       );
 
-      // Scroll-Driven Exit Animation (pinned)
       const scrollTl = gsap.timeline({
         scrollTrigger: {
           trigger: section,
@@ -59,49 +54,17 @@ const HeroSection = () => {
           pin: true,
           scrub: 0.6,
           onLeaveBack: () => {
-            // Reset to visible when scrolling back to top
             gsap.set([headline, mediaCard, body, cta], {
-              opacity: 1,
-              x: 0,
-              y: 0,
-              scale: 1,
+              opacity: 1, x: 0, y: 0, scale: 1,
             });
           },
         },
       });
 
-      // EXIT phase (70% - 100%)
-      // Headline exits left
-      scrollTl.fromTo(
-        headline,
-        { x: 0, opacity: 1 },
-        { x: '-18vw', opacity: 0, ease: 'power2.in' },
-        0.7
-      );
-
-      // Media card exits right
-      scrollTl.fromTo(
-        mediaCard,
-        { x: 0, scale: 1, opacity: 1 },
-        { x: '10vw', scale: 0.98, opacity: 0, ease: 'power2.in' },
-        0.7
-      );
-
-      // Body exits down
-      scrollTl.fromTo(
-        body,
-        { y: 0, opacity: 1 },
-        { y: '18vh', opacity: 0, ease: 'power2.in' },
-        0.7
-      );
-
-      // CTA exits down
-      scrollTl.fromTo(
-        cta,
-        { y: 0, opacity: 1 },
-        { y: '18vh', opacity: 0, ease: 'power2.in' },
-        0.72
-      );
+      scrollTl.fromTo(headline, { x: 0, opacity: 1 }, { x: '-18vw', opacity: 0, ease: 'power2.in' }, 0.7);
+      scrollTl.fromTo(mediaCard, { x: 0, scale: 1, opacity: 1 }, { x: '10vw', scale: 0.98, opacity: 0, ease: 'power2.in' }, 0.7);
+      scrollTl.fromTo(body, { y: 0, opacity: 1 }, { y: '18vh', opacity: 0, ease: 'power2.in' }, 0.7);
+      scrollTl.fromTo(cta, { y: 0, opacity: 1 }, { y: '18vh', opacity: 0, ease: 'power2.in' }, 0.72);
     }, section);
 
     return () => ctx.revert();
@@ -109,35 +72,25 @@ const HeroSection = () => {
 
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    if (element) element.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <section
-      ref={sectionRef}
-      className="section-pinned bg-ron-dark flex items-center"
-    >
+    <section ref={sectionRef} className="section-pinned bg-ron-dark flex items-center">
       <div className="w-full px-6 lg:px-[6vw] py-20 lg:py-0">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-0 items-center">
           {/* Left Content */}
           <div className="order-2 lg:order-1">
-            {/* Micro Label */}
             <p className="micro-label mb-6">Performance Marketing</p>
 
-            {/* Headline */}
             <div ref={headlineRef} className="mb-8">
               <h1 className="font-display font-bold text-4xl sm:text-5xl lg:text-[clamp(44px,5vw,76px)] leading-[0.95] tracking-[-0.03em] text-white">
-                <span className="headline-line block">
-                  <span className="text-ron-yellow">Data-driven</span>
-                </span>
+                <span className="headline-line block"><span className="text-ron-yellow">Data-driven</span></span>
                 <span className="headline-line block">marketing.</span>
                 <span className="headline-line block">Built to perform.</span>
               </h1>
             </div>
 
-            {/* Body */}
             <div ref={bodyRef} className="max-w-md mb-8">
               <p className="text-ron-text-secondary text-base lg:text-lg leading-relaxed">
                 We plan, run, and optimize campaigns across paid search, social,
@@ -145,36 +98,50 @@ const HeroSection = () => {
               </p>
             </div>
 
-            {/* CTA */}
+            {/* CTAs — primary dominant, secondary ghost outline */}
             <div ref={ctaRef} className="flex flex-wrap items-center gap-4">
               <button
                 onClick={() => scrollToSection('#contact')}
-                className="btn-primary flex items-center gap-2"
+                className="btn-primary flex items-center gap-2 text-base px-6 py-3"
               >
                 Book a discovery call
                 <ArrowRight size={18} />
               </button>
               <button
-                onClick={() => scrollToSection('#work')}
-                className="text-white hover:text-ron-yellow transition-colors flex items-center gap-2"
+                onClick={() => scrollToSection('#services')}
+                className="flex items-center gap-2 text-sm px-5 py-3 rounded-full border border-white/30 text-white hover:border-ron-yellow hover:text-ron-yellow transition-all duration-300"
               >
-                See recent work
-                <ArrowRight size={16} />
+                Explore services
+                <ArrowRight size={14} />
               </button>
             </div>
           </div>
 
-          {/* Right Media Card */}
+          {/* Right Media Card — gradient fades on all edges */}
           <div className="order-1 lg:order-2 flex justify-center lg:justify-end">
             <div
               ref={mediaCardRef}
-              className="media-card w-full max-w-[400px] lg:max-w-none lg:w-[40vw] lg:h-[68vh] aspect-[3/4] lg:aspect-auto will-change-transform"
+              className="relative w-full max-w-[400px] lg:max-w-none lg:w-[40vw] lg:h-[68vh] aspect-[3/4] lg:aspect-auto will-change-transform overflow-hidden rounded-3xl"
+              style={{ boxShadow: '0 28px 70px rgba(0,0,0,0.45)' }}
             >
               <img
                 src="./images/hero_team_collab.jpg"
                 alt="Team collaboration"
                 className="w-full h-full object-cover"
+                style={{ objectPosition: 'center 30%' }}
               />
+              {/* Left edge fade */}
+              <div className="absolute inset-y-0 left-0 w-1/3 pointer-events-none"
+                style={{ background: 'linear-gradient(to right, #0B0B0D 0%, transparent 100%)' }} />
+              {/* Top edge fade */}
+              <div className="absolute inset-x-0 top-0 h-1/4 pointer-events-none"
+                style={{ background: 'linear-gradient(to bottom, #0B0B0D 0%, transparent 100%)' }} />
+              {/* Bottom edge fade */}
+              <div className="absolute inset-x-0 bottom-0 h-1/4 pointer-events-none"
+                style={{ background: 'linear-gradient(to top, #0B0B0D 0%, transparent 100%)' }} />
+              {/* Right edge fade */}
+              <div className="absolute inset-y-0 right-0 w-1/4 pointer-events-none"
+                style={{ background: 'linear-gradient(to left, #0B0B0D 0%, transparent 100%)' }} />
             </div>
           </div>
         </div>

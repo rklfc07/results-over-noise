@@ -161,7 +161,6 @@ const Portfolio = () => {
               >
                 {/* Image */}
                 <div className="relative aspect-video overflow-hidden bg-white/5">
-                  {/* Placeholder gradient */}
                   <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-60`} />
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="text-center">
@@ -173,7 +172,6 @@ const Portfolio = () => {
                       </p>
                     </div>
                   </div>
-                  {/* Category badge */}
                   <div className="absolute top-3 left-3">
                     <span className="px-3 py-1 bg-ron-yellow/90 text-ron-dark text-xs font-semibold rounded-full">
                       {project.category}
@@ -183,7 +181,6 @@ const Portfolio = () => {
 
                 {/* Content */}
                 <div className="p-5 lg:p-6 flex flex-col flex-1">
-                  {/* Client & Industry */}
                   <div className="flex items-center justify-between mb-3">
                     <h3 className="font-display font-bold text-lg text-white group-hover:text-ron-yellow transition-colors duration-300">
                       {project.client}
@@ -191,18 +188,15 @@ const Portfolio = () => {
                     <span className="text-white/40 text-xs">{project.industry}</span>
                   </div>
 
-                  {/* Key Result */}
                   <div className="flex items-center gap-2 mb-4 p-3 rounded-xl bg-white/5 border border-white/5">
                     <project.resultIcon size={16} className="text-ron-yellow flex-shrink-0" />
                     <span className="font-display font-bold text-ron-yellow text-lg">{project.result}</span>
                   </div>
 
-                  {/* Description */}
                   <p className="text-ron-text-secondary text-sm leading-relaxed flex-1 mb-4">
                     {project.description}
                   </p>
 
-                  {/* Tags & Duration */}
                   <div className="border-t border-white/10 pt-4">
                     <div className="flex flex-wrap gap-2 mb-3">
                       {project.tags.map(tag => (
@@ -220,8 +214,8 @@ const Portfolio = () => {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-16 lg:py-24 bg-ron-lavender">
+      {/* CTA — changed from ron-lavender (purple) to black/dark, consistent with brand system */}
+      <section className="py-16 lg:py-24 bg-ron-dark border-t border-white/10">
         <div className="w-full px-5 lg:px-[5vw] text-center">
           <h2 className="font-display font-bold text-2xl sm:text-3xl lg:text-[clamp(30px,3.2vw,48px)] leading-[1.1] tracking-[-0.02em] text-white mb-4">
             Want results like <span className="text-ron-yellow">these</span>?
