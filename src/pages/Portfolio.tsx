@@ -87,9 +87,9 @@ const projects = [
     client: 'Fit & Fine',
     country: 'India 🇮🇳',
     industry: 'Health & Wellness',
-    category: 'Social Media',
+    category: 'Website Development',
     logo: '/images/logos/fit_and_fine.svg',
-    result: '-38% Cost Per Lead',
+    result: 'Clean website from scratch',
     resultIcon: TrendingDown,
     description: 'Scaled Meta ad campaigns for a health and wellness brand. Introduced creative testing and audience segmentation to significantly reduce cost per lead while growing reach.',
     tags: ['Meta Ads', 'Creative Testing', 'Analytics'],
@@ -99,7 +99,7 @@ const projects = [
   },
 ];
 
-const categories = ['All', 'Paid Advertising', 'SEO', 'Lead Generation', 'Content Marketing', 'Social Media'];
+const categories = ['All', 'Paid Advertising', 'SEO', 'Lead Generation', 'Website Development'];
 
 const Portfolio = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
