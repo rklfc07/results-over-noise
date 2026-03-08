@@ -17,10 +17,13 @@ import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
 import Portfolio from './pages/Portfolio';
 
-// Scroll to top on every route change
+// Disable browser scroll restoration + scroll to top on every route change
 const ScrollToTop = () => {
   const { pathname } = useLocation();
   useEffect(() => {
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
     window.scrollTo(0, 0);
   }, [pathname]);
   return null;
