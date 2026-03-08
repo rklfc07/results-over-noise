@@ -71,7 +71,7 @@ const Layout = () => {
             <img
               src="/images/logo.png"
               alt="Results Over Noise"
-              className="h-15 sm:h-17 lg:h-20 w-auto object-contain"
+              className="h-14 sm:h-16 lg:h-20 w-auto object-contain"
             />
           </Link>
 
