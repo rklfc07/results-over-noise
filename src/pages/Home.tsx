@@ -299,7 +299,7 @@ const Home = () => {
         {/* Hero Section */}
         <section ref={heroRef} className="pb-16 lg:pb-24" style={{ paddingTop: 'clamp(64px, 10vw, 96px)' }}>
           <div className="w-full px-5 lg:px-[5vw]">
-            <div className="grid md:grid-cols-2 gap-6 md:gap-10 lg:gap-16 items-start">
+            <div className="grid md:grid-cols-2 gap-6 md:gap-10 lg:gap-16 items-center">
               {/* Text LEFT */}
               <div className="hero-content order-1">
                 <p className="micro-label mb-3">Performance Marketing</p>
@@ -325,7 +325,7 @@ const Home = () => {
               </div>
               {/* Image RIGHT */}
               <div className="hero-image order-2 flex justify-center md:justify-end">
-                <div className="media-card w-full max-w-[340px] md:max-w-none md:w-full aspect-[4/5]">
+                <div className="media-card w-full max-w-[340px] md:max-w-none md:w-full h-[380px] md:h-[420px] lg:h-[480px]">
                   <img
                     src="/images/hero_team_collab.jpg"
                     alt="Team collaboration"
