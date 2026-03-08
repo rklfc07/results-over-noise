@@ -65,13 +65,13 @@ const Layout = () => {
           scrolled ? 'bg-ron-dark/95 backdrop-blur-md border-b border-white/10' : 'bg-transparent'
         }`}
       >
-        <div className="w-full px-5 lg:px-[5vw] h-16 lg:h-20 flex items-center justify-between">
+        <div className="w-full px-5 lg:px-[5vw] h-16 sm:h-18 lg:h-24 flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center">
             <img
               src="/images/logo.png"
               alt="Results Over Noise"
-              className="h-14 sm:h-16 lg:h-20 w-auto object-contain"
+              className="h-10 sm:h-12 lg:h-18 w-auto object-contain"
             />
           </Link>
 
@@ -300,7 +300,7 @@ const Layout = () => {
                 <img
                   src="/images/logo.png"
                   alt="Results Over Noise"
-                  className="h-14 w-auto object-contain"
+                  className="h-10 w-auto object-contain"
                 />
               </Link>
               <p className="text-ron-text-secondary text-sm leading-relaxed">

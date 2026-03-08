@@ -297,7 +297,7 @@ const Home = () => {
     <>
       <div className="bg-ron-dark">
         {/* Hero Section */}
-        <section ref={heroRef} className="min-h-screen flex items-center pt-20 pb-16 md:pt-0 md:pb-0">
+        <section ref={heroRef} className="min-h-screen flex items-center pt-16 pb-16 sm:pt-18 md:pt-0 md:pb-0">
           <div className="w-full px-5 lg:px-[5vw]">
             <div className="grid md:grid-cols-2 gap-8 md:gap-10 lg:gap-16 items-center">
               {/* Text LEFT */}
