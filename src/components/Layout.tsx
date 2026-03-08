@@ -67,8 +67,12 @@ const Layout = () => {
       >
         <div className="w-full px-5 lg:px-[5vw] h-16 lg:h-20 flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="font-display font-bold text-lg text-white hover:text-ron-yellow transition-colors">
-            Results Over Noise
+          <Link to="/" className="flex items-center">
+            <img
+              src="/images/logo.png"
+              alt="Results Over Noise"
+              className="h-10 lg:h-12 w-auto object-contain"
+            />
           </Link>
 
           {/* Desktop Nav */}
@@ -292,8 +296,12 @@ const Layout = () => {
         <div className="w-full px-5 lg:px-[5vw]">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-12">
             <div className="lg:col-span-1">
-              <Link to="/" className="font-display font-bold text-lg text-white mb-4 block">
-                Results Over Noise
+              <Link to="/" className="inline-flex mb-4">
+                <img
+                  src="/images/logo.png"
+                  alt="Results Over Noise"
+                  className="h-10 w-auto object-contain"
+                />
               </Link>
               <p className="text-ron-text-secondary text-sm leading-relaxed">
                 Data-driven marketing that delivers measurable ROI.
