@@ -8,6 +8,8 @@ import SocialMedia from './pages/services/SocialMedia';
 import ContentMarketing from './pages/services/ContentMarketing';
 import MarketingStrategy from './pages/services/MarketingStrategy';
 import LeadGeneration from './pages/services/LeadGeneration';
+import WebDevelopment from './pages/services/WebDevelopment';
+import SaasProduct from './pages/services/SaasProduct';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Blog from './pages/Blog';
@@ -27,6 +29,8 @@ function App() {
           <Route path="services/content-marketing" element={<ContentMarketing />} />
           <Route path="services/marketing-strategy" element={<MarketingStrategy />} />
           <Route path="services/lead-generation" element={<LeadGeneration />} />
+          <Route path="services/web-development" element={<WebDevelopment />} />
+          <Route path="services/saas-product" element={<SaasProduct />} />
           <Route path="about" element={<About />} />
           <Route path="contact" element={<Contact />} />
           <Route path="blog" element={<Blog />} />
