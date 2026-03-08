@@ -71,7 +71,7 @@ const Layout = () => {
             <img
               src="/images/logo.png"
               alt="Results Over Noise"
-              className="h-10 sm:h-12 lg:h-18 w-auto object-contain"
+              className="h-14 sm:h-16 lg:h-20 w-auto object-contain"
             />
           </Link>
 
@@ -300,7 +300,7 @@ const Layout = () => {
                 <img
                   src="/images/logo.png"
                   alt="Results Over Noise"
-                  className="h-10 w-auto object-contain"
+                  className="h-14 w-auto object-contain"
                 />
               </Link>
               <p className="text-ron-text-secondary text-sm leading-relaxed">
