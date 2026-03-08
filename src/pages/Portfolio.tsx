@@ -14,13 +14,12 @@ const projects = [
     industry: 'SaaS',
     category: 'Paid Advertising',
     logo: '/images/logos/Computhink.png',
-    logoBg: 'bg-[#0a0a0a]',
     result: '+3.2× ROAS',
     resultIcon: TrendingUp,
     description: 'Rebuilt Google Ads campaigns from scratch. Increased visibility and leads through targeted search campaigns and conversion rate optimisation.',
     tags: ['Google Ads', 'CRO', 'SaaS'],
     duration: '3 months',
-    accentColor: 'from-blue-600/30 to-blue-900/10',
+    accentColor: 'from-blue-600/20 via-blue-900/10 to-transparent',
     borderHover: 'hover:border-blue-500/40',
   },
   {
@@ -30,13 +29,12 @@ const projects = [
     industry: 'Education',
     category: 'Paid Advertising',
     logo: '/images/logos/keerti_education.webp',
-    logoBg: 'bg-white',
     result: '+80% Leads Growth',
     resultIcon: Users,
     description: 'Audited and restructured existing paid campaigns for a leading education provider. Tightened targeting, rewrote ad copy, and A/B tested landing pages to cut cost per acquisition.',
     tags: ['Google Ads', 'Meta Ads', 'A/B Testing'],
     duration: '4 months',
-    accentColor: 'from-blue-500/30 to-indigo-900/10',
+    accentColor: 'from-blue-500/20 via-indigo-900/10 to-transparent',
     borderHover: 'hover:border-blue-400/40',
   },
   {
@@ -46,13 +44,12 @@ const projects = [
     industry: 'E-commerce',
     category: 'SEO',
     logo: '/images/logos/brilliantecrystalcleaner.png',
-    logoBg: 'bg-[#0d1a2e]',
-    result: 'Technical Error Fix',
+    result: 'Technical SEO Fixed',
     resultIcon: Search,
     description: 'Conducted full SEO audit. Solved technical SEMrush errors. Optimised on-page SEO across the entire product catalogue to improve search visibility.',
     tags: ['Technical SEO', 'On-page SEO', 'SEMrush'],
     duration: '2 months',
-    accentColor: 'from-cyan-500/20 to-cyan-900/10',
+    accentColor: 'from-cyan-500/20 via-cyan-900/10 to-transparent',
     borderHover: 'hover:border-cyan-400/40',
   },
   {
@@ -62,13 +59,12 @@ const projects = [
     industry: 'Property Services',
     category: 'Lead Generation',
     logo: '/images/logos/trash_buttler.png',
-    logoBg: 'bg-[#1a2744]',
     result: '+68% Qualified Leads',
     resultIcon: Users,
     description: 'Designed and launched a full-funnel lead generation system for a doorstep trash pickup service. Combined local SEO and paid search to drive high-quality property management leads.',
     tags: ['Local SEO', 'Google Ads', 'Landing Pages'],
     duration: '3 months',
-    accentColor: 'from-indigo-500/25 to-indigo-900/10',
+    accentColor: 'from-indigo-500/20 via-indigo-900/10 to-transparent',
     borderHover: 'hover:border-indigo-400/40',
   },
   {
@@ -78,13 +74,12 @@ const projects = [
     industry: 'Insurance',
     category: 'Content Marketing',
     logo: '/images/logos/DrEwirth.png',
-    logoBg: 'bg-white',
     result: '4× Pipeline Growth',
     resultIcon: BarChart3,
     description: 'Built a thought leadership content strategy for a leading German insurance broker. SEO-driven articles and targeted distribution quadrupled their inbound enquiry pipeline.',
     tags: ['Content Marketing', 'SEO', 'Lead Gen'],
     duration: '5 months',
-    accentColor: 'from-green-600/20 to-green-900/10',
+    accentColor: 'from-green-600/20 via-green-900/10 to-transparent',
     borderHover: 'hover:border-green-500/40',
   },
   {
@@ -94,13 +89,12 @@ const projects = [
     industry: 'Health & Wellness',
     category: 'Social Media',
     logo: '/images/logos/fit_and_fine.svg',
-    logoBg: 'bg-[#0a1628]',
     result: '-38% Cost Per Lead',
     resultIcon: TrendingDown,
     description: 'Scaled Meta ad campaigns for a health and wellness brand. Introduced creative testing and audience segmentation to significantly reduce cost per lead while growing reach.',
     tags: ['Meta Ads', 'Creative Testing', 'Analytics'],
     duration: '4 months',
-    accentColor: 'from-orange-500/20 to-orange-900/10',
+    accentColor: 'from-orange-500/20 via-orange-900/10 to-transparent',
     borderHover: 'hover:border-orange-400/40',
   },
 ];
@@ -178,17 +172,15 @@ const Portfolio = () => {
                 className={`portfolio-card process-card overflow-hidden group transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(245,200,66,0.10)] ${project.borderHover} flex flex-col`}
               >
                 {/* Logo Thumbnail */}
-                <div className="relative aspect-video overflow-hidden bg-white/5">
-                  {/* Gradient bg */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${project.accentColor}`} />
+                <div className={`relative aspect-video overflow-hidden bg-gradient-to-br ${project.accentColor}`}>
 
-                  {/* Logo centred */}
+                  {/* Logo centred — always white card so every logo is visible */}
                   <div className="absolute inset-0 flex items-center justify-center p-8">
-                    <div className={`rounded-xl ${project.logoBg} px-6 py-4 flex items-center justify-center w-full max-w-[200px] shadow-lg`}>
+                    <div className="bg-white rounded-2xl px-8 py-5 flex items-center justify-center w-full max-w-[220px] shadow-xl">
                       <img
                         src={project.logo}
                         alt={`${project.client} logo`}
-                        className="max-h-14 w-auto object-contain"
+                        className="max-h-12 w-auto object-contain"
                       />
                     </div>
                   </div>
@@ -202,7 +194,7 @@ const Portfolio = () => {
 
                   {/* Country badge */}
                   <div className="absolute top-3 right-3">
-                    <span className="px-2.5 py-1 bg-black/40 backdrop-blur-sm text-white/80 text-xs rounded-full border border-white/10">
+                    <span className="px-2.5 py-1 bg-black/50 backdrop-blur-sm text-white/80 text-xs rounded-full border border-white/10">
                       {project.country}
                     </span>
                   </div>
