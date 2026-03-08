@@ -297,7 +297,7 @@ const Home = () => {
     <>
       <div className="bg-ron-dark">
         {/* Hero Section */}
-        <section ref={heroRef} className="flex items-center" style={{ minHeight: 'calc(100vh - clamp(72px, 11vw, 100px))', marginTop: 'clamp(72px, 11vw, 100px)' }}>
+        <section ref={heroRef} className="flex items-center py-16 lg:py-24" style={{ paddingTop: 'clamp(88px, 12vw, 120px)' }}>
           <div className="w-full px-5 lg:px-[5vw]">
             <div className="grid md:grid-cols-2 gap-6 md:gap-10 lg:gap-16 items-center">
               {/* Text LEFT */}
