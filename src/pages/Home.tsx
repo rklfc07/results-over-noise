@@ -299,16 +299,16 @@ const Home = () => {
         {/* Hero Section */}
         <section ref={heroRef} className="min-h-screen flex items-center pb-16 md:pb-0" style={{ paddingTop: 'clamp(64px, 10vw, 96px)' }}>
           <div className="w-full px-5 lg:px-[5vw]">
-            <div className="grid md:grid-cols-2 gap-8 md:gap-10 lg:gap-16 items-center">
+            <div className="grid md:grid-cols-2 gap-6 md:gap-10 lg:gap-16 items-center">
               {/* Text LEFT */}
               <div className="hero-content order-1">
-                <p className="micro-label mb-4">Performance Marketing</p>
-                <h1 className="font-display font-bold text-3xl sm:text-4xl lg:text-5xl xl:text-6xl leading-[1.2] tracking-[-0.02em] text-white mb-6">
+                <p className="micro-label mb-3">Performance Marketing</p>
+                <h1 className="font-display font-bold text-3xl sm:text-4xl lg:text-5xl xl:text-6xl leading-[1.15] tracking-[-0.02em] text-white mb-4">
                   <span className="text-ron-yellow">Data-driven</span>{' '}marketing.
                   <br />
                   Built to perform.
                 </h1>
-                <p className="text-ron-text-secondary text-base lg:text-lg leading-relaxed max-w-md mb-8">
+                <p className="text-ron-text-secondary text-base lg:text-lg leading-relaxed max-w-md mb-6">
                   We plan, run, and optimize campaigns across paid search, social,
                   and content—so every dollar works harder.
                 </p>
