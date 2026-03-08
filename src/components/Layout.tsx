@@ -72,7 +72,7 @@ const Layout = () => {
               src="/images/logo.png"
               alt="Results Over Noise"
               className="w-auto object-contain"
-              style={{ height: 'clamp(32px, 5vw, 56px)' }}
+              style={{ height: 'clamp(52px, 7vw, 76px)' }}
             />
           </Link>
 
