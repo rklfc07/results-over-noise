@@ -299,7 +299,7 @@ const Home = () => {
         {/* Hero Section */}
         <section ref={heroRef} className="pb-16 lg:pb-24" style={{ paddingTop: 'clamp(64px, 10vw, 96px)' }}>
           <div className="w-full px-5 lg:px-[5vw]">
-            <div className="grid md:grid-cols-2 gap-6 md:gap-10 lg:gap-16 items-center">
+            <div className="grid md:grid-cols-2 gap-6 md:gap-10 lg:gap-16 items-start">
               {/* Text LEFT */}
               <div className="hero-content order-1">
                 <p className="micro-label mb-3">Performance Marketing</p>
