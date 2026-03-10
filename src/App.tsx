@@ -16,6 +16,7 @@ import Contact from './pages/Contact';
 import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
 import Portfolio from './pages/Portfolio';
+import ThankYou from './pages/ThankYou';
 
 // Disable browser scroll restoration + scroll to top on every route change
 const ScrollToTop = () => {
@@ -50,6 +51,7 @@ function App() {
           <Route path="blog" element={<Blog />} />
           <Route path="blog/:slug" element={<BlogPost />} />
           <Route path="portfolio" element={<Portfolio />} />
+          <Route path="thank-you" element={<ThankYou />} />
         </Route>
       </Routes>
     </BrowserRouter>
