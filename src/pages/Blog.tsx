@@ -269,7 +269,7 @@ const Blog = () => {
       </section>
 
       {/* Newsletter CTA */}
-      <section className="py-16 lg:py-24 bg-ron-lavender">
+      <section className="py-16 lg:py-24 bg-white/5">
         <div className="w-full px-5 lg:px-[5vw]">
           <div className="max-w-2xl mx-auto text-center">
             <h2 className="font-display font-bold text-2xl sm:text-3xl lg:text-[clamp(30px,3.2vw,48px)] leading-[1.1] tracking-[-0.02em] text-white mb-4">

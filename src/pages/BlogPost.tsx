@@ -604,7 +604,7 @@ const BlogPost = () => {
           <div className="blog-post-content max-w-3xl mx-auto">
             <div 
               ref={contentRef}
-              className="prose prose-lg prose-invert max-w-none"
+              className="blog-content"
               dangerouslySetInnerHTML={{ __html: post.content }}
             />
           </div>
@@ -613,7 +613,7 @@ const BlogPost = () => {
 
       {/* Related Posts */}
       {relatedPosts.length > 0 && (
-        <section className="py-16 lg:py-24 bg-ron-lavender">
+        <section className="py-16 lg:py-24 bg-white/5">
           <div className="w-full px-5 lg:px-[5vw]">
             <div className="max-w-4xl mx-auto">
               <h2 className="font-display font-bold text-2xl text-white mb-8">
