@@ -172,7 +172,7 @@ const Layout = () => {
             )}
 
             <Link to="/contact" className="btn-primary text-sm flex items-center gap-2">
-              Book a call
+              Contact Us
               <ArrowRight size={14} />
             </Link>
           </nav>
@@ -337,9 +337,7 @@ const Layout = () => {
                   </li>
                 ))}
               </ul>
-              <h4 className="font-mono text-xs uppercase tracking-[0.12em] text-ron-text-secondary mb-4">
-                Company
-              </h4>
+              
               <ul className="space-y-2">
                 <li>
                   <Link to="/about" className="text-sm text-ron-text-secondary hover:text-white transition-colors">About Us</Link>
@@ -354,8 +352,8 @@ const Layout = () => {
               <h4 className="font-mono text-xs uppercase tracking-[0.12em] text-ron-text-secondary mb-4">
                 Get in Touch
               </h4>
-              <p className="text-sm text-ron-text-secondary mb-2">hello@resultsovernoise.co</p>
-              <p className="text-sm text-ron-text-secondary">+1 (555) 013-2847</p>
+              <p className="text-sm text-ron-text-secondary mb-2">info@resultsovernoise.com</p>
+              <p className="text-sm text-ron-text-secondary">+91 7307553661</p>
             </div>
           </div>
 

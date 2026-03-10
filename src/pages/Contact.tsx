@@ -181,7 +181,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <p className="text-xs text-ron-text-secondary">Email</p>
-                    <p className="text-white text-sm">hello@resultsovernoise.co</p>
+                    <p className="text-white text-sm">info@resultsovernoise.com</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
@@ -190,7 +190,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <p className="text-xs text-ron-text-secondary">Phone</p>
-                    <p className="text-white text-sm">+1 (555) 013-2847</p>
+                    <p className="text-white text-sm">+91 7307553661</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
@@ -199,7 +199,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <p className="text-xs text-ron-text-secondary">Hours</p>
-                    <p className="text-white text-sm">Mon–Fri, 9am–6pm ET</p>
+                    <p className="text-white text-sm">Mon–Fri, 9am–6pm</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
@@ -208,7 +208,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <p className="text-xs text-ron-text-secondary">Location</p>
-                    <p className="text-white text-sm">Remote-first, based in New York</p>
+                    <p className="text-white text-sm">Remote-first, based in Mumbai</p>
                   </div>
                 </div>
               </div>
@@ -220,7 +220,7 @@ const Contact = () => {
                 <Users size={15} className="text-ron-text-secondary flex-shrink-0 mt-0.5" />
                 <p className="text-ron-text-secondary text-xs leading-relaxed">
                   Prefer a live conversation?{' '}
-                  <a href="tel:+15550132847" className="text-ron-yellow hover:underline">
+                  <a href="tel:+917307553661" className="text-ron-yellow hover:underline">
                     Call us directly
                   </a>{' '}
                   or use the form to tell us about your project — we'll follow up to schedule a call.
